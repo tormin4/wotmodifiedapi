@@ -2,15 +2,17 @@ import os
 
 from worldoftanks.helper.validators import Validators
 from worldoftanks.helper.create_engine import create_db_engine
+from worldoftanks.helper.logger import create_logger
 from worldoftanks.orm.data_model import DataModel
 from worldoftanks.action.player_personal_data import PlayerPersonalData
 from worldoftanks.action.player_vehicles_data import PlayerVehiclesData
+from worldoftanks.action.player_achievements import PlayerAchievementsData
 
 
 class WotAPI:
 
     def __init__(self, application_id: str, account_id: str, token: str, display_output=False, log_level="INFO"):
-        self.log_level = log_level
+        self.log_level = create_logger(log_level)
         self.display_output = display_output
         self.application_id = application_id
         self.account_id = account_id
@@ -31,7 +33,7 @@ class WotAPI:
         engine = create_db_engine(path=os.getcwd())
         DataModel.create_tables(engine=engine)
 
-    def player_personal_data(self, load_to_db: bool) -> list:
+    def player_personal(self, load_to_db: bool) -> list:
         """
         Handles the extraction, transformation and loading of personal data into the database.
         Requires a personal access token.
@@ -39,20 +41,33 @@ class WotAPI:
 
         self._check_parameters()
 
-        personal_data = PlayerPersonalData(log_level=self.log_level)
+        personal_data = PlayerPersonalData()
         data = personal_data.etl_data(application_id=self.application_id, account_id=self.account_id, token=self.token,
                                       load_to_db=load_to_db)
 
         return data
 
-    def player_vehicles_data(self, load_to_db: bool) -> list:
+    def player_vehicles(self, load_to_db: bool) -> list:
         """
         Handles the extraction, transformation and loading of player vehicle data into the database.
         Requires a personal access token.
         """
         self._check_parameters()
 
-        vehicles_data = PlayerVehiclesData(log_level=self.log_level)
+        vehicles_data = PlayerVehiclesData()
+        data = vehicles_data.etl_data(application_id=self.application_id, account_id=self.account_id, token=self.token,
+                                      load_to_db=load_to_db)
+
+        return data
+
+    def player_achievements(self, load_to_db: bool) -> list:
+        """
+        Handles the extraction, transformation and loading of player achievements data into the database.
+        Requires a personal access token.
+        """
+        self._check_parameters()
+
+        vehicles_data = PlayerAchievementsData()
         data = vehicles_data.etl_data(application_id=self.application_id, account_id=self.account_id, token=self.token,
                                       load_to_db=load_to_db)
 

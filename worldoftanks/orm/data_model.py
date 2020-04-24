@@ -93,6 +93,20 @@ class PlayerPersonalVehiclesModel(Base):
     mark_of_mastery = Column(Integer)
 
 
+class PlayerAchievementsModel(Base):
+    """
+    Create data model for the achievements statistics.
+    """
+    __tablename__ = 'player_achievements'
+    __table_args__ = {'schema': 'main'}
+
+    id = Column(Integer, primary_key=True)
+    loaded_at = Column(DateTime, default=datetime.datetime.utcnow)
+    medal_type = Column(String)
+    medal_name = Column(String)
+    medal_quantity = Column(Integer)
+
+
 class DataModel:
 
     @staticmethod

@@ -3,7 +3,7 @@ To extract:
 - Accounts   
 	- [ x ] player_personal_data
 	- [ x ] player_vehicles
-	- player_achievements (no token required)
+	- [ x ] player_achievements (no token required)
 
 - Tankopedia
 	- vehicles (no token required)

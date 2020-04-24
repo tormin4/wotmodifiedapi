@@ -2,10 +2,10 @@ import logging
 
 from worldoftanks.helper.data_model_loader import DataModelLoader
 from worldoftanks.utils.api import API
-from worldoftanks.orm.data_model import PlayerPersonalVehiclesModel
+from worldoftanks.orm.data_model import PlayerAchievementsModel
 
 
-class PlayerVehiclesData:
+class PlayerAchievementsData:
 
     def __init__(self):
         pass
@@ -16,10 +16,10 @@ class PlayerVehiclesData:
         Extracts Data from the api
         """
 
-        logging.info('Extracting player vehicles data')
+        logging.info('Extracting player achivements data')
 
         wot = API(application_id=application_id, account_id=account_id, token=token)
-        raw_data = wot.get_data(source='player_vehicles_data')
+        raw_data = wot.get_data(source='player_achievements')
 
         return raw_data
 
@@ -28,19 +28,19 @@ class PlayerVehiclesData:
         """
         Extracts only the necessary data to be inserted into the tables
         """
-        logging.info('Parsing player vehicles details data')
+        logging.info('Parsing player achievements data')
 
         # Get only the account data
         account_data = raw_data['data'][account_id]
 
         clean_data = []
-        for item in account_data:
-            clean_data.append({
-                "tank_id": item['tank_id'],
-                "battles": item['statistics']['battles'],
-                "mark_of_mastery": item['mark_of_mastery'],
-                "wins": item['statistics']['wins']
-            })
+        for medal_type in ['achievements', 'frags', 'max_series']:
+            for key, value in account_data[medal_type].items():
+                clean_data.append({
+                    "medal_type": medal_type,
+                    "medal_name": key,
+                    "medal_quantity": value
+                })
 
         return clean_data
 
@@ -55,6 +55,6 @@ class PlayerVehiclesData:
         clean_data = self._parse_data(raw_data=raw_data, account_id=account_id)
 
         if load_to_db:
-            DataModelLoader.insert(PlayerPersonalVehiclesModel, clean_data)
+            DataModelLoader.insert(PlayerAchievementsModel, clean_data)
 
         return clean_data
