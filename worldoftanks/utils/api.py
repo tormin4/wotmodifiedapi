@@ -19,9 +19,11 @@ class API:
         """
 
         if source == 'player_personal_data':
-            url = self.build_url_player_personal()
+            url = self._build_url_player_personal()
         elif source == 'player_vehicles_data':
-            url = self.build_url_player_vehicles()
+            url = self._build_url_player_vehicles()
+        elif source == 'player_achievements':
+            url = self._build_url_player_achievements()
         else:
             raise ValueError('API Method invalid')
 
@@ -35,7 +37,7 @@ class API:
             else:
                 continue
 
-    def build_url_player_personal(self) -> str:
+    def _build_url_player_personal(self) -> str:
         """
         Extracts player personal data from the accounts section.
         """
@@ -45,13 +47,22 @@ class API:
 
         return url
 
-    def build_url_player_vehicles(self) -> str:
+    def _build_url_player_vehicles(self) -> str:
         """
         Extracts player vehicle data from the accounts section.
         """
 
         url = "{}/account/tanks/?application_id={}&access_token={}&account_id={}" \
             .format(self.BASE_URL, self.application_id, self.access_token, self.account_id)
+
+        return url
+
+    def _build_url_player_achievements(self) -> str:
+        """
+        Extracts player achievements data from the accounts section.
+        """
+        url = "{}/account/achievements/?application_id={}&account_id={}" \
+            .format(self.BASE_URL, self.application_id, self.account_id)
 
         return url
 

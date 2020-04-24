@@ -1,34 +1,34 @@
-import os
-from sqlalchemy.orm import sessionmaker
+import logging
 
-from worldoftanks.helper.logger import create_logger
-from worldoftanks.helper.create_engine import create_db_engine
+from worldoftanks.helper.data_model_loader import DataModelLoader
 from worldoftanks.utils.api import API
 from worldoftanks.orm.data_model import PlayerPersonalDataStatisticsModel, PlayerPersonalDataDetailsModel
 
 
 class PlayerPersonalData:
 
-    def __init__(self, log_level):
-        self.logger = create_logger(log_level)
+    def __init__(self):
+        pass
 
-    def _extract_data(self, application_id: str, account_id: str, token: str) -> dict:
+    @staticmethod
+    def _extract_data(application_id: str, account_id: str, token: str) -> dict:
         """
         Extracts Data from the api
         """
 
-        self.logger.info('Extracting player personal data')
+        logging.info('Extracting player personal data')
 
         wot = API(application_id=application_id, account_id=account_id, token=token)
         raw_data = wot.get_data(source='player_personal_data')
 
         return raw_data
 
-    def _parse_details_data(self, raw_data: dict, account_id: str) -> list:
+    @staticmethod
+    def _parse_details_data(raw_data: dict, account_id: str) -> list:
         """
         Extracts only the necessary data to be inserted into the tables
         """
-        self.logger.info('Parsing player personal details data')
+        logging.info('Parsing player personal details data')
         # Get only the account data
         account_data = raw_data['data'][account_id]
 
@@ -52,12 +52,13 @@ class PlayerPersonalData:
 
         return details_data
 
-    def _parse_statistics_data(self, raw_data: dict, account_id: str) -> list:
+    @staticmethod
+    def _parse_statistics_data(raw_data: dict, account_id: str) -> list:
         """
         Extracts only the statistics data.
         The data is composed of four records based on the statistic type.
         """
-        self.logger.info('Parsing player personal statistics data')
+        logging.info('Parsing player personal statistics data')
 
         raw_data = raw_data['data'][account_id]['statistics']
         statistic_types = ['clan', 'all', 'regular_team', 'company', 'stronghold_skirmish', 'stronghold_defense',
@@ -107,30 +108,6 @@ class PlayerPersonalData:
 
         return statistic_data
 
-    def _load_data(self, data: list, table_name: str):
-        """
-        Loads the data into the database.
-        """
-
-        if table_name == 'player_personal_data_details':
-            self.logger.info('Loading player personal details data')
-            data_object = PlayerPersonalDataDetailsModel(**data[0])
-            data_model = [data_object]
-
-        elif table_name == 'player_personal_data_statistics':
-            self.logger.info('Loading player personal statistics data')
-            data_model = []
-            for i in range(0, len(data)):
-                data_model.append(PlayerPersonalDataStatisticsModel(**data[i]))
-        else:
-            data_model = []
-
-        Session = sessionmaker(bind=create_db_engine(path=os.getcwd()))
-        session = Session()
-        session.bulk_save_objects(data_model)
-        session.commit()
-        session.close()
-
     def etl_data(self, application_id: str, account_id: str, token: str, load_to_db: bool) -> list:
         """
         Combines all the above methods to be used as one command.
@@ -143,10 +120,8 @@ class PlayerPersonalData:
         statistics = self._parse_statistics_data(raw_data, account_id=account_id)
 
         if load_to_db:
-            self._load_data(details, table_name="player_personal_data_details")
-            self._load_data(statistics, table_name="player_personal_data_statistics")
-        else:
-            self.logger.info('Data will not be loaded to sqlite database')
+            DataModelLoader.insert(PlayerPersonalDataDetailsModel, details)
+            DataModelLoader.insert(PlayerPersonalDataStatisticsModel, statistics)
 
         # Return the dict with combined data
         result = [{
