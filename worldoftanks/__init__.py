@@ -1,0 +1,1 @@
+from worldoftanks.WotAPI import WotAPI

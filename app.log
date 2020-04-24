@@ -1,0 +1,43 @@
+2020-04-23 16:56:31,125 - WorldOfTanksAPI - INFO - Extracting player personal data
+2020-04-23 16:56:31,373 - root - INFO - API call success https://api.worldoftanks.eu/wot/account/info/?application_id=03d55680b2e0c803a414470163632665&access_token=6d29917627da2f61bba952453e9d552b9c2a2cac&account_id=508670392: Status Code 200
+2020-04-23 16:56:31,373 - WorldOfTanksAPI - INFO - Parsing player personal details data
+2020-04-23 16:56:31,374 - WorldOfTanksAPI - INFO - Parsing player personal statistics data
+2020-04-23 16:56:31,374 - WorldOfTanksAPI - INFO - Creating player personal sqlite tables
+2020-04-23 16:56:31,388 - WorldOfTanksAPI - INFO - Loading player personal details data
+2020-04-23 16:56:31,397 - WorldOfTanksAPI - INFO - Loading player personal statistics data
+2020-04-23 16:57:14,657 - WorldOfTanksAPI - INFO - Extracting player personal data
+2020-04-23 16:57:14,945 - root - INFO - API call success: Status Code 200
+2020-04-23 16:57:14,945 - WorldOfTanksAPI - INFO - Parsing player personal details data
+2020-04-23 16:57:14,946 - WorldOfTanksAPI - INFO - Parsing player personal statistics data
+2020-04-23 16:57:14,946 - WorldOfTanksAPI - INFO - Creating player personal sqlite tables
+2020-04-23 16:57:14,962 - WorldOfTanksAPI - INFO - Loading player personal details data
+2020-04-23 16:57:14,981 - WorldOfTanksAPI - INFO - Loading player personal statistics data
+2020-04-23 17:30:50,268 - WorldOfTanksAPI - INFO - Extracting player vehicles data
+2020-04-23 17:32:02,284 - WorldOfTanksAPI - INFO - Extracting player vehicles data
+2020-04-23 17:33:02,353 - WorldOfTanksAPI - INFO - Extracting player vehicles data
+2020-04-23 17:33:15,201 - WorldOfTanksAPI - INFO - Extracting player vehicles data
+2020-04-23 17:36:53,395 - WorldOfTanksAPI - INFO - Extracting player vehicles data
+2020-04-23 17:37:05,307 - WorldOfTanksAPI - INFO - Extracting player vehicles data
+2020-04-23 17:37:14,328 - WorldOfTanksAPI - INFO - Extracting player vehicles data
+2020-04-23 20:33:42,300 - WorldOfTanksAPI - INFO - Extracting player vehicles data
+2020-04-23 20:34:04,207 - WorldOfTanksAPI - INFO - Extracting player vehicles data
+2020-04-23 20:34:06,345 - root - INFO - API call success: Status Code 200
+2020-04-23 20:34:38,397 - WorldOfTanksAPI - INFO - Extracting player vehicles data
+2020-04-23 20:34:39,549 - root - INFO - API call success: Status Code 200
+2020-04-23 20:35:16,401 - WorldOfTanksAPI - INFO - Extracting player vehicles data
+2020-04-23 20:35:19,320 - root - INFO - API call success: Status Code 200
+2020-04-23 20:35:48,193 - WorldOfTanksAPI - INFO - Extracting player vehicles data
+2020-04-23 20:35:49,447 - root - INFO - API call success: Status Code 200
+2020-04-23 20:36:07,449 - WorldOfTanksAPI - INFO - Extracting player vehicles data
+2020-04-23 20:36:31,580 - WorldOfTanksAPI - INFO - Extracting player vehicles data
+2020-04-23 20:36:32,538 - root - INFO - API call success: Status Code 200
+2020-04-23 20:36:36,045 - WorldOfTanksAPI - INFO - Extracting player vehicles data
+2020-04-23 20:36:36,300 - root - INFO - API call success: Status Code 200
+2020-04-23 20:36:50,553 - WorldOfTanksAPI - INFO - Extracting player vehicles data
+2020-04-23 20:36:53,540 - root - INFO - API call success: Status Code 200
+2020-04-23 20:37:05,123 - WorldOfTanksAPI - INFO - Extracting player vehicles data
+2020-04-23 20:37:05,453 - root - INFO - API call success: Status Code 200
+2020-04-24 15:27:53,242 - WorldOfTanksAPI - INFO - Extracting player vehicles data
+2020-04-24 15:27:55,990 - root - INFO - API call success: Status Code 200
+2020-04-24 15:28:33,682 - WorldOfTanksAPI - INFO - Extracting player vehicles data
+2020-04-24 15:28:36,609 - root - INFO - API call success: Status Code 200
