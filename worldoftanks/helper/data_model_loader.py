@@ -25,3 +25,17 @@ class DataModelLoader:
             # TODO: Create a less generic exception
             logging.error('Player vehicles data loading data failed')
             raise
+
+    @staticmethod
+    def check_if_data_exists(model: object,):
+        """
+        Checks if any data is existing in the table.
+        """
+        s = sessionmaker(bind=create_db_engine(path=os.getcwd()))
+        session = s()
+        table_values = session.query(model).count()
+
+        if table_values > 0:
+            return True
+        else:
+            return False

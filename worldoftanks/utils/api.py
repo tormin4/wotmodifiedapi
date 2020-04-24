@@ -24,6 +24,14 @@ class API:
             url = self._build_url_player_vehicles()
         elif source == 'player_achievements':
             url = self._build_url_player_achievements()
+        elif source == 'tankopedia_vehicles':
+            url = self._build_url_tankopedia_vehicles()
+        elif source == 'tankopedia_achievements':
+            url = self._build_url_tankopedia_achievements()
+        elif source == 'tankopedia_info':
+            url = self._build_url_tankopedia_information()
+        elif source == 'tankopedia_maps':
+            url = self._build_url_tankopedia_maps()
         else:
             raise ValueError('API Method invalid')
 
@@ -63,6 +71,43 @@ class API:
         """
         url = "{}/account/achievements/?application_id={}&account_id={}" \
             .format(self.BASE_URL, self.application_id, self.account_id)
+
+        return url
+
+    def _build_url_tankopedia_vehicles(self) -> str:
+        """
+        Extracts tankopedia vehicles data from the accounts section.
+        """
+
+        url = "{}/encyclopedia/vehicles/?application_id={}" \
+            .format(self.BASE_URL, self.application_id)
+
+        return url
+
+    def _build_url_tankopedia_achievements(self) -> str:
+        """
+        Extracts tankopedia achievements data from the accounts section.
+        """
+        url = "{}/encyclopedia/achievements/?application_id={}" \
+            .format(self.BASE_URL, self.application_id)
+
+        return url
+
+    def _build_url_tankopedia_information(self) -> str:
+        """
+        Builds the url to extract tankopedia information data.
+        """
+        url = "{}/encyclopedia/info/?application_id={}" \
+            .format(self.BASE_URL, self.application_id)
+
+        return url
+
+    def _build_url_tankopedia_maps(self) -> str:
+        """
+        Builds the url to extract tankopedia maps data.
+        """
+        url = "{}/encyclopedia/arenas/?application_id={}" \
+            .format(self.BASE_URL, self.application_id)
 
         return url
 
