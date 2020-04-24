@@ -7,11 +7,15 @@ from worldoftanks.orm.data_model import DataModel
 from worldoftanks.action.player_personal_data import PlayerPersonalData
 from worldoftanks.action.player_vehicles_data import PlayerVehiclesData
 from worldoftanks.action.player_achievements import PlayerAchievementsData
+from worldoftanks.action.tankopedia_vehicles import TankopediaVehiclesData
+from worldoftanks.action.tankopedia_achievements import TankopediaAchievementsData
+from worldoftanks.action.tankopedia_info import TankopediaInfoData
+from worldoftanks.action.tankopedia_maps import TankopediaMapsData
 
 
 class WotAPI:
 
-    def __init__(self, application_id: str, account_id: str, token: str, display_output=False, log_level="INFO"):
+    def __init__(self, application_id: str, account_id: str, token: str, display_output=False, log_level="WARNING"):
         self.log_level = create_logger(log_level)
         self.display_output = display_output
         self.application_id = application_id
@@ -32,8 +36,9 @@ class WotAPI:
         """
         engine = create_db_engine(path=os.getcwd())
         DataModel.create_tables(engine=engine)
+        print('Database created')
 
-    def player_personal(self, load_to_db: bool) -> list:
+    def player_personal(self, load_to_db=True) -> list:
         """
         Handles the extraction, transformation and loading of personal data into the database.
         Requires a personal access token.
@@ -44,10 +49,11 @@ class WotAPI:
         personal_data = PlayerPersonalData()
         data = personal_data.etl_data(application_id=self.application_id, account_id=self.account_id, token=self.token,
                                       load_to_db=load_to_db)
+        print('Player personal data has been extracted')
 
         return data
 
-    def player_vehicles(self, load_to_db: bool) -> list:
+    def player_vehicles(self, load_to_db=True) -> list:
         """
         Handles the extraction, transformation and loading of player vehicle data into the database.
         Requires a personal access token.
@@ -57,10 +63,10 @@ class WotAPI:
         vehicles_data = PlayerVehiclesData()
         data = vehicles_data.etl_data(application_id=self.application_id, account_id=self.account_id, token=self.token,
                                       load_to_db=load_to_db)
-
+        print("Player personal vehicles data has been extracted")
         return data
 
-    def player_achievements(self, load_to_db: bool) -> list:
+    def player_achievements(self, load_to_db=True) -> list:
         """
         Handles the extraction, transformation and loading of player achievements data into the database.
         Requires a personal access token.
@@ -70,8 +76,54 @@ class WotAPI:
         vehicles_data = PlayerAchievementsData()
         data = vehicles_data.etl_data(application_id=self.application_id, account_id=self.account_id, token=self.token,
                                       load_to_db=load_to_db)
-
+        print("Player personal achievements data has been extracted")
         return data
 
+    def tankopedia_vehicles(self, load_once: bool, load_to_db=True) -> list:
+        """
+        Handles the extraction, transformation and loading of tankopedia vehicles data into the database.
+        """
+        self._check_parameters()
 
+        vehicles = TankopediaVehiclesData()
+        data = vehicles.etl_data(application_id=self.application_id, account_id=self.account_id, token=self.token,
+                                 load_to_db=load_to_db, load_once=load_once)
+        print("Player tankopedia vehicles data has been extracted")
+        return data
+
+    def tankopedia_achievements(self, load_once: bool, load_to_db=True) -> list:
+        """
+        Handles the extraction, transformation and loading of tankopedia achievements data into the database.
+        """
+        self._check_parameters()
+
+        vehicles = TankopediaAchievementsData()
+        data = vehicles.etl_data(application_id=self.application_id, account_id=self.account_id, token=self.token,
+                                 load_to_db=load_to_db, load_once=load_once)
+        print("Player tankopedia achievements has been extracted")
+        return data
+
+    def tankopedia_information(self, load_once: bool, load_to_db=True) -> list:
+        """
+        Handles the extraction, transformation and loading of tankopedia information data into the database.
+        """
+        self._check_parameters()
+
+        info = TankopediaInfoData()
+        data = info.etl_data(application_id=self.application_id, account_id=self.account_id, token=self.token,
+                             load_to_db=load_to_db, load_once=load_once)
+        print("Player tankopedia information has been extracted")
+        return data
+
+    def tankopedia_maps(self, load_once: bool, load_to_db=True) -> list:
+        """
+        Handles the extraction, transformation and loading of tankopedia maps data into the database.
+        """
+        self._check_parameters()
+
+        info = TankopediaMapsData()
+        data = info.etl_data(application_id=self.application_id, account_id=self.account_id, token=self.token,
+                             load_to_db=load_to_db, load_once=load_once)
+        print("Player tankopedia maps has been extracted")
+        return data
 

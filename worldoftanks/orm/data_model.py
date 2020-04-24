@@ -107,6 +107,87 @@ class PlayerAchievementsModel(Base):
     medal_quantity = Column(Integer)
 
 
+class TankopediaVehiclesModel(Base):
+    """
+    Create data model for the tankopedia vehicles.
+    """
+    __tablename__ = 'tankopedia_vehicles'
+    __table_args__ = {'schema': 'main'}
+
+    id = Column(Integer, primary_key=True)
+    loaded_at = Column(DateTime, default=datetime.datetime.utcnow)
+    tank_id = Column(String)
+    is_wheeled = Column(Boolean)
+    is_premium = Column(Boolean)
+    tag = Column(String)
+    small_icon = Column(String)
+    contour_icon = Column(String)
+    big_icon = Column(String)
+    type = Column(String)
+    description = Column(String)
+    short_name = Column(String)
+    name = Column(String)
+    nation = Column(String)
+    tier = Column(Integer)
+    price_gold = Column(Integer)
+    price_credit = Column(Integer)
+    is_gift = Column(Boolean)
+
+
+class TankopediaAchievementsModel(Base):
+    """
+    Create data model for the tankopedia achievements.
+    """
+    __tablename__ = 'tankopedia_achievements'
+    __table_args__ = {'schema': 'main'}
+
+    id = Column(Integer, primary_key=True)
+    loaded_at = Column(DateTime, default=datetime.datetime.utcnow)
+    name = Column(String)
+    outdated = Column(Boolean)
+    section = Column(String)
+    section_order = Column(Integer)
+    image_big = Column(String)
+    options = Column(String)
+    hero_info = Column(String)
+    name_i18n = Column(String)
+    order = Column(Integer)
+    type = Column(String)
+    image = Column(String)
+    condition = Column(String)
+    description = Column(String)
+
+
+class TankopediaInfoModel(Base):
+    """
+    Create data model for the tankopedia info.
+    """
+    __tablename__ = 'tankopedia_information'
+    __table_args__ = {'schema': 'main'}
+
+    id = Column(Integer, primary_key=True)
+    loaded_at = Column(DateTime, default=datetime.datetime.utcnow)
+    metric = Column(String)
+    group = Column(String)
+    alias = Column(String)
+    value = Column(String)
+
+
+class TankopediaMapsModel(Base):
+    """
+    Create data model for the tankopedia maps.
+    """
+    __tablename__ = 'tankopedia_maps'
+    __table_args__ = {'schema': 'main'}
+
+    id = Column(Integer, primary_key=True)
+    loaded_at = Column(DateTime, default=datetime.datetime.utcnow)
+    name = Column(String)
+    camouflage_type = Column(String)
+    description = Column(String)
+    arena_id = Column(String)
+
+
 class DataModel:
 
     @staticmethod
