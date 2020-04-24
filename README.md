@@ -28,7 +28,9 @@ wot = WotAPI(application_id='############',
 
 # Create the local database
 wot.db_init()
+```
 
+```
 # Extract Account Data
 wot.player_personal()
 wot.player_vehicles()
