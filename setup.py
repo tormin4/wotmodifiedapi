@@ -19,7 +19,7 @@ setup(name='WotAPI',
       zip_safe=False,
       long_description=README,
       long_description_content_type="text/markdown",
-      packages=['WotAPI'],
+      packages=find_packages(),
       install_requires=[
             'requests',
             'sqlalchemy',
