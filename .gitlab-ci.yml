@@ -19,7 +19,7 @@ unittest:
   script:
     - python3 -m unittest discover -v worldoftanks/tests
   when:
-    always
+    manual
 
 coveragetest:
   stage: test
@@ -27,18 +27,21 @@ coveragetest:
     - coverage run --source=worldoftanks -m unittest discover -s worldoftanks/tests
     - coverage report -m
   when:
-    always
+    manual
 
 create_build:
   stage: make_build
   script:
     # Create config file
     - bash make_config.sh ${PYPI_USERNAME} ${PYPI_PASS} ${TEST_PYPI_USERNAME} ${TEST_PYPI_PASS}
+    - pwd
+    - ls -la
+    - cd worldoftanks
     - cd worldoftanks
     - python3 setup.py sdist bdist_wheel
     - twine check dist/*
   when:
-    always
+    manual
 
 deploy_to_test:
   stage: deploy_test_pypi
