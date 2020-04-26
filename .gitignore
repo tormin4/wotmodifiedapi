@@ -15,3 +15,4 @@ worldoftanks.db
 ToDo
 WotAPI.egg-info
 app.log
+.coverage

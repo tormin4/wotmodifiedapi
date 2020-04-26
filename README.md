@@ -62,3 +62,19 @@ The data can be accessed from the ```wot``` objects for further development proc
 - Vehicles Statistics
 	- vehicle_statistics
 	- vehicle_achievements
+	
+### 5. Development
+
+##### Unittesting
+For development purposes, the unittests can be executed via: 
+
+```
+python3 -m unittest discover -v worldoftanks/tests
+```
+
+##### Coverage Tests
+
+```
+coverage run --source=worldoftanks -m unittest discover -s worldoftanks/tests
+coverage report -m
+```
