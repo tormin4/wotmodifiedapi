@@ -8,13 +8,16 @@ from worldoftanks.helper.create_engine import create_db_engine
 class DataModelLoader:
 
     @staticmethod
-    def insert(model: object, data: list):
+    def insert(model: object, data: list, db_engine="default"):
         """
         Generic method to insert a data model into sqlite.
         """
 
         try:
-            s = sessionmaker(bind=create_db_engine(path=os.getcwd()))
+            if db_engine == 'default':
+                s = sessionmaker(bind=create_db_engine(path=os.getcwd()))
+            else:
+                s = sessionmaker(bind=db_engine)
             session = s()
             session.bulk_insert_mappings(model, data)
             session.commit()
@@ -27,11 +30,14 @@ class DataModelLoader:
             raise
 
     @staticmethod
-    def check_if_data_exists(model: object,):
+    def check_if_data_exists(model: object, db_engine="default"):
         """
         Checks if any data is existing in the table.
         """
-        s = sessionmaker(bind=create_db_engine(path=os.getcwd()))
+        if db_engine == 'default':
+            s = sessionmaker(bind=create_db_engine(path=os.getcwd()))
+        else:
+            s = sessionmaker(bind=db_engine)
         session = s()
         table_values = session.query(model).count()
 

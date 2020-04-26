@@ -9,8 +9,13 @@ class Validators:
         Checks if the token / account_id / application id has been provided.
         """
 
-        try:
-            len(param)
-        except ValueError:
-            logging.error("World of Tanks {} has not been provided".format(param_type))
-            raise ValueError("World of Tanks {} has not been provided".format(param_type))
+        if param:
+            if param_type:
+                return True
+            else:
+                logging.error('Parameter Type {} has not been provided'.format(param_type))
+                raise ValueError('Parameter Type {} has not been provided'.format(param_type))
+
+        else:
+            logging.error('Parameter {} has not been provided'.format(param))
+            raise ValueError('Parameter {} has not been provided'.format(param))

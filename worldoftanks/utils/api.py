@@ -40,7 +40,7 @@ class API:
             attempt += 1
 
             r = requests.get(url)
-            if self._eval_response(r, url, attempt):
+            if self._eval_response(r, attempt):
                 return r.json()
             else:
                 continue
@@ -111,7 +111,7 @@ class API:
 
         return url
 
-    def _eval_response(self, response, url, attempt: int) -> bool:
+    def _eval_response(self, response, attempt: int) -> bool:
         """
         Evaluates the status code of the get request
         """
@@ -124,6 +124,6 @@ class API:
 
         if response.status_code != 200:
             waiting_seconds = attempt * self.BACKOFF_MULTIPLIER
-            logging.warning("Endpoint: {} HTTP Error Code: {} - Attempt: {} - Will retry again in {}"
-                            .format(url, response.status_code, attempt, attempt * self.BACKOFF_MULTIPLIER))
+            logging.warning("HTTP Error Code: {} - Attempt: {} - Will retry again in {}"
+                            .format(response.status_code, attempt, attempt * self.BACKOFF_MULTIPLIER))
             time.sleep(waiting_seconds)
