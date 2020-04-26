@@ -34,18 +34,20 @@ create_build:
     # Create config file
     - pip install twine
     - bash make_config.sh ${PYPI_USERNAME} ${PYPI_PASS} ${TEST_PYPI_USERNAME} ${TEST_PYPI_PASS}
-    - pwd
-    - ls -la
     - python3 setup.py sdist bdist_wheel
     - twine check dist/*
+    - rm .pypirc
   when:
     manual
 
 deploy_to_test:
   stage: deploy_test_pypi
   script:
-    - cd worldoftanks
+    - pip install twine
+    - python3 setup.py sdist bdist_wheel
+    - twine check dist/*
     - python3 -m twine upload --repository testpypi dist/* --verbose
+    - rm .pypirc
   when:
     manual
 
