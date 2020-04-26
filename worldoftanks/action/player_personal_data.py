@@ -11,14 +11,14 @@ class PlayerPersonalData:
         pass
 
     @staticmethod
-    def _extract_data(application_id: str, account_id: str, token: str) -> dict:
+    def _extract_data(application_id: str, account_id: str, token: str, realm: str) -> dict:
         """
         Extracts Data from the api
         """
 
         logging.info('Extracting player personal data')
 
-        wot = API(application_id=application_id, account_id=account_id, token=token)
+        wot = API(application_id=application_id, account_id=account_id, token=token, realm=realm)
         raw_data = wot.get_data(source='player_personal_data')
 
         return raw_data
@@ -108,14 +108,14 @@ class PlayerPersonalData:
 
         return statistic_data
 
-    def etl_data(self, application_id: str, account_id: str, token: str, load_to_db: bool) -> list:
+    def etl_data(self, application_id: str, account_id: str, token: str, load_to_db: bool, realm: str) -> list:
         """
         Combines all the above methods to be used as one command.
         Takes the details and the statistics data and loads it into dbsqlite.
         It also returns a combination of the data as a dictionary.
         """
 
-        raw_data = self._extract_data(account_id=account_id, application_id=application_id, token=token)
+        raw_data = self._extract_data(account_id=account_id, application_id=application_id, token=token, realm=realm)
         details = self._parse_details_data(raw_data, account_id=account_id)
         statistics = self._parse_statistics_data(raw_data, account_id=account_id)
 

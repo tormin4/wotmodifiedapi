@@ -14,7 +14,6 @@ at the location where the script is executed.
 The name of the database is ```world_of_tanks.db``` of type sqlite.
 
 
-
 ### 2. Install
 
 ```
