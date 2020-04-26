@@ -11,14 +11,14 @@ The package will require the following from the official [World of Tanks Develop
 
 All data extracted will be written to a local sqlite database ready to be accessed. The database is automatically created
 at the location where the script is executed.    
-The name of the database is ```world_of_tanks.db```. This is a sqlite database which can be opened by free software available only.
+The name of the database is ```world_of_tanks.db``` of type sqlite.
 
 
 
 ### 2. Install
 
 ```
-pip install worldoftanks
+pip install WotAPI
 ```
 
 ### 3. Usage
