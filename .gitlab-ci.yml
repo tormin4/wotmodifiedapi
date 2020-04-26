@@ -2,6 +2,7 @@ image: "python:3.7"
 
 before_script:
   - python --version
+  - pip3 install -r requirements.txt
 
 stages:
   - test
@@ -10,6 +11,6 @@ stages:
 unittests:
   stage: test
   script:
-    - echo 'Hello world'
+    - python3 -m unittest discover -v worldoftanks/tests
   when:
     always
