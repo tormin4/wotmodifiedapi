@@ -15,7 +15,8 @@ from worldoftanks.action.tankopedia_maps import TankopediaMapsData
 
 class WotAPI:
 
-    def __init__(self, application_id: str, account_id: str, token: str, realm:str, quietly=False, log_level="WARNING"):
+    def __init__(self, application_id: str, account_id: str, token: str, realm: str, quietly=False,
+                 log_level="WARNING"):
         self.log_level = create_logger(log_level)
         self.quietly = quietly
         self.application_id = application_id
@@ -30,6 +31,7 @@ class WotAPI:
         Validators.check_if_param_exists(self.token, 'token')
         Validators.check_if_param_exists(self.account_id, 'account_id')
         Validators.check_if_param_exists(self.application_id, 'application_id')
+        Validators.check_realm(self.realm)
 
     def db_init(self):
         """
@@ -50,7 +52,7 @@ class WotAPI:
 
         personal_data = PlayerPersonalData()
         data = personal_data.etl_data(application_id=self.application_id, account_id=self.account_id, token=self.token,
-                                      load_to_db=load_to_db)
+                                      load_to_db=load_to_db, realm=self.realm)
 
         if not self.quietly:
             print('Player personal data has been extracted')
@@ -66,7 +68,7 @@ class WotAPI:
 
         vehicles_data = PlayerVehiclesData()
         data = vehicles_data.etl_data(application_id=self.application_id, account_id=self.account_id, token=self.token,
-                                      load_to_db=load_to_db)
+                                      load_to_db=load_to_db, realm=self.realm)
 
         if not self.quietly:
             print("Player personal vehicles data has been extracted")
@@ -81,7 +83,7 @@ class WotAPI:
 
         vehicles_data = PlayerAchievementsData()
         data = vehicles_data.etl_data(application_id=self.application_id, account_id=self.account_id, token=self.token,
-                                      load_to_db=load_to_db)
+                                      load_to_db=load_to_db, realm=self.realm)
 
         if not self.quietly:
             print("Player personal achievements data has been extracted")
@@ -95,7 +97,7 @@ class WotAPI:
 
         vehicles = TankopediaVehiclesData()
         data = vehicles.etl_data(application_id=self.application_id, account_id=self.account_id, token=self.token,
-                                 load_to_db=load_to_db, load_once=load_once)
+                                 load_to_db=load_to_db, load_once=load_once, realm=self.realm)
 
         if not self.quietly:
             print("Player tankopedia vehicles data has been extracted")
@@ -109,7 +111,7 @@ class WotAPI:
 
         vehicles = TankopediaAchievementsData()
         data = vehicles.etl_data(application_id=self.application_id, account_id=self.account_id, token=self.token,
-                                 load_to_db=load_to_db, load_once=load_once)
+                                 load_to_db=load_to_db, load_once=load_once, realm=self.realm)
 
         if not self.quietly:
             print("Player tankopedia achievements has been extracted")
@@ -123,7 +125,7 @@ class WotAPI:
 
         info = TankopediaInfoData()
         data = info.etl_data(application_id=self.application_id, account_id=self.account_id, token=self.token,
-                             load_to_db=load_to_db, load_once=load_once)
+                             load_to_db=load_to_db, load_once=load_once, realm=self.realm)
 
         if not self.quietly:
             print("Player tankopedia information has been extracted")
@@ -137,7 +139,7 @@ class WotAPI:
 
         info = TankopediaMapsData()
         data = info.etl_data(application_id=self.application_id, account_id=self.account_id, token=self.token,
-                             load_to_db=load_to_db, load_once=load_once)
+                             load_to_db=load_to_db, load_once=load_once, realm=self.realm)
 
         if not self.quietly:
             print("Player tankopedia maps has been extracted")

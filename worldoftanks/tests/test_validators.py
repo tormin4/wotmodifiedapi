@@ -15,3 +15,11 @@ class TestValidators(unittest.TestCase):
 
     def test_wrong_parameter_type(self):
         self.assertRaises(ValueError, Validators.check_if_param_exists, None, "1")
+
+    def test_wrong_realm(self):
+        self.assertRaises(ValueError, Validators.check_realm, "some_garbage")
+
+    def test_correct_realm(self):
+        response = Validators.check_realm("eu")
+        expected = True
+        self.assertEqual(response, expected)

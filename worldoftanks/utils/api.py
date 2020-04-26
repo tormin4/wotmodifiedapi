@@ -5,11 +5,12 @@ import time
 
 class API:
 
-    def __init__(self, application_id: str, account_id: str, token: str):
+    def __init__(self, application_id: str, account_id: str, token: str, realm: str):
         self.account_id = account_id
         self.application_id = application_id
         self.access_token = token
-        self.BASE_URL = 'https://api.worldoftanks.eu/wot'
+        self.realm = realm
+        self.BASE_URL = 'https://api.worldoftanks.{}/wot'.format(realm)
         self.MAX_ATTEMPTS = 3
         self.BACKOFF_MULTIPLIER = 10
 
