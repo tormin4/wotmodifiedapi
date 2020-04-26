@@ -42,7 +42,7 @@ deploy_to_test:
   script:
     - pip install twine
     - python3 setup.py sdist bdist_wheel
-    - twine check dist/* --repository-url https://test.pypi.org/legacy/ --username $TWINE_USERNAME --password $TWINE_PASSWORD
+    - twine check dist/*
     - twine upload dist/* --repository-url https://test.pypi.org/legacy/ --username $TWINE_USERNAME --password $TWINE_PASSWORD
   when:
     manual
@@ -53,7 +53,7 @@ deploy_to_live:
   script:
     - pip install twine
     - python3 setup.py sdist bdist_wheel
-    - twine check dist/* --repository-url https://test.pypi.org/legacy/ --username $TWINE_USERNAME --password $TWINE_PASSWORD
+    - twine check dist/*
     - twine upload dist/* --repository-url https://test.pypi.org/legacy/ --username $TWINE_USERNAME --password $TWINE_PASSWORD
   when:
     manual
