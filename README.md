@@ -9,7 +9,11 @@ The package will require the following from the official [World of Tanks Develop
 * account id
 * access token
 
-All data extracted will be written to a local sqlite database ready to be accessed.
+All data extracted will be written to a local sqlite database ready to be accessed. The database is automatically created
+at the location where the script is executed.    
+The name of the database is ```world_of_tanks.db```. This is a sqlite database which can be opened by free software available only.
+
+
 
 ### 2. Install
 
@@ -43,26 +47,68 @@ wot.tankopedia_information(load_once=True)
 wot.tankopedia_maps(load_once=True)
 ```
 
-The data can be accessed from the ```wot``` objects for further development processed
 
-### 4. Left ToDo
+All data from the Tankopedia part of the API needs to be loaded only once in the database, otherwise this will be duplicated. 
+For ease, the argument ```load_once``` is by default set to True. 
 
-- Accounts   
-	- [✓] player_personal_data
-	- [✓] player_vehicles
-	- [✓] player_achievements (no token required)
+The data can be accessed from the ```wot``` objects for further development. The response is a list of dictionaries.
+```
+achievements = wot.player_achivements(load_once=True)
+print(achievements)
 
-- Tankopedia
-	- [✓] vehicles (no token required)
-	- [✓] achivements (no token required)
-	- [✓] tankopedia_information (no token required)
-	- [✓] maps (no token required)
-	- badges (no token required)
+[{
+'name': 'medalBobAmway921', 
+'outdated': True, 
+'section': 'action', 
+'section_order': 6, 
+'image_big': 'http://api.worldoftanks.eu/static/2.66.0/wot/encyclopedia/achievement/big/medalBobAmway921.png', 
+'hero_info': None, 
+'name_i18n': None, 
+'order': 1443, 
+'type': 'single', 
+'image': 'http://api.worldoftanks.eu/static/2.66.0/wot/encyclopedia/achievement/medalBobAmway921.png', 
+'condition': 'None', 
+'description': None
+} ... 
+]
+```
 
-- Vehicles Statistics
-	- vehicle_statistics
-	- vehicle_achievements
-	
+
+
+### 4. Left To Do
+
+| API Part      | Name                      | Date Completed    | Version   |
+| ---           | ---                       | ---               | ---       |
+| Accounts      | Player Personal Data      | 2020-04-24        | 0.0.1     |
+| Accounts      | Player Vehicles           | 2020-04-24        | 0.0.1     |
+| Accounts      | Player Achievements       | 2020-04-24        | 0.0.1     |
+| Tankopedia    | Vehicles                  | 2020-04-25        | 0.0.2     |
+| Tankopedia    | Achievements              | 2020-04-25        | 0.0.2     |
+| Tankopedia    | Tankopedia Information    | 2020-04-25        | 0.0.2     |
+| Tankopedia    | Maps                      | 2020-04-25        | 0.0.2     |
+| Tankopedia    | Badges                    |                   |           |
+| Tankopedia    | Vehicle characteristics   |                   |           |
+| Tankopedia    | Engines                   |                   |           |
+| Tankopedia    | Turrets                   |                   |           |
+| Tankopedia    | Radios                    |                   |           |
+| Tankopedia    | Suspensions               |                   |           | 
+| Tankopedia    | Guns                      |                   |           |
+| Tankopedia    | Equipment and Consumables |                   |           |
+| Tankopedia    | Personal Missions         |                   |           |
+| Tankopedia    | Personal Reserves         |                   |           |
+| Tankopedia    | Vehicle Configurations    |                   |           |
+| Tankopedia    | Modules                   |                   |           |
+| Tankopedia    | Badges                    |                   |           |
+| Tankopedia    | Crew Qualifications       |                   |           |
+| Tankopedia    | Crew Skills               |                   |           |
+| Vehicles      | Vehicle statistics        |                   |           |
+| Vehicles      | Vehicle achievements      |                   |           |
+| Clans         |                           |                   |           |
+| Clan ratings  |                           |                   |           |
+| Strongholds   |                           |                   |           |
+| Global Map    |                           |                   |           |
+    
+ 
 ### 5. Development
 
 ##### Unittesting
