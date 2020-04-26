@@ -10,7 +10,7 @@ with open(os.path.join(HERE, "README.md")) as fid:
     README = fid.read()
 
 setup(name='WotAPI',
-      version='0.2.2',
+      version='0.2.21',
       description='Extract data from the World of Tanks PC API',
       author='Gabriel Oana',
       author_email='gabriel.oana91@gmail.com',
