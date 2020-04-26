@@ -18,7 +18,7 @@ unittest:
   script:
     - python3 -m unittest discover -v worldoftanks/tests
   when:
-    manual
+    always
 
 coveragetest:
   stage: test
@@ -26,14 +26,14 @@ coveragetest:
     - coverage run --source=worldoftanks -m unittest discover -s worldoftanks/tests
     - coverage report -m
   when:
-    manual
+    always
 
 create_build:
   stage: make_build
   script:
     - pip install twine
     - python3 setup.py sdist bdist_wheel
-    - twine check dist/* --repository-url https://test.pypi.org/legacy/ --username $TWINE_USERNAME --password $TWINE_PASSWORD
+    - twine check dist/*
   when:
     manual
 
