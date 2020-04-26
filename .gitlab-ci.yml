@@ -5,7 +5,6 @@ before_script:
   - pip3 install -r requirements.txt
   - pip3 install coverage
   - python3 -m pip install --user --upgrade setuptools wheel
-  - python3 -m pip install --user --upgrade twine
 
 stages:
   - test
@@ -33,6 +32,7 @@ create_build:
   stage: make_build
   script:
     # Create config file
+    - pip install twine
     - bash make_config.sh ${PYPI_USERNAME} ${PYPI_PASS} ${TEST_PYPI_USERNAME} ${TEST_PYPI_PASS}
     - pwd
     - ls -la
