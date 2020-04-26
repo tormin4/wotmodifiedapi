@@ -3,14 +3,27 @@ image: "python:3.7"
 before_script:
   - python --version
   - pip3 install -r requirements.txt
+  - pip3 install coverage
 
 stages:
   - test
 
 
-unittests:
+unittest:
   stage: test
   script:
     - python3 -m unittest discover -v worldoftanks/tests
   when:
     always
+
+
+coveragetest:
+  stage: test
+  script:
+    - coverage run --source=worldoftanks -m unittest discover -s worldoftanks/tests
+    - coverage report -m
+  when:
+    always
+
+
+
