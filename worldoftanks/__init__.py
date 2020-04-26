@@ -1,1 +1,2 @@
 from worldoftanks.WotAPI import WotAPI
+from worldoftanks.orm.data_model import PlayerAchievementsModel
