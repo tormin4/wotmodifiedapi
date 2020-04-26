@@ -38,7 +38,7 @@ create_build:
     - python3 setup.py sdist bdist_wheel
     - twine check dist/*
   when:
-    - always
+    always
 
 deploy_to_test:
   stage: deploy_test_pypi
@@ -46,7 +46,7 @@ deploy_to_test:
     - cd worldoftanks
     - python3 -m twine upload --repository testpypi dist/* --verbose
   when:
-    - manual
+    manual
 
 
 deploy_to_live:
@@ -55,6 +55,6 @@ deploy_to_live:
     - cd worldoftanks
     - python3 -m twine upload --repository pypi dist/* --verbose
   when:
-    - manual
+    manual
 
 
