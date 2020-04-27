@@ -33,6 +33,10 @@ class API:
             url = self._build_url_tankopedia_information()
         elif source == 'tankopedia_maps':
             url = self._build_url_tankopedia_maps()
+        elif source == 'vehicle_statistics':
+            url = self._build_url_vehicle_statistics()
+        elif source == 'vehicle_achievements':
+            url = self._build_url_vehicle_achievements()
         else:
             raise ValueError('API Method invalid')
 
@@ -45,6 +49,26 @@ class API:
                 return r.json()
             else:
                 continue
+
+    def _build_url_vehicle_statistics(self) -> str:
+        """
+        Extracts vehicles statistics in the player vehicle section.
+        """
+
+        url = "{}/tanks/stats/?application_id={}&access_token={}&account_id={}" \
+            .format(self.BASE_URL, self.application_id, self.access_token, self.account_id)
+
+        return url
+
+    def _build_url_vehicle_achievements(self) -> str:
+        """
+        Extracts vehicles statistics in the player vehicle section.
+        """
+
+        url = "{}/tanks/achievements/?application_id={}&access_token={}&account_id={}" \
+            .format(self.BASE_URL, self.application_id, self.access_token, self.account_id)
+
+        return url
 
     def _build_url_player_personal(self) -> str:
         """
@@ -117,11 +141,23 @@ class API:
         Evaluates the status code of the get request
         """
 
-        # TODO: Create more descriptive error handling on different error codes.
-
         if response.status_code == 200:
-            logging.info('API call success: Status Code 200')
-            return True
+            # ToDO: This needs a better implementation
+            # Check the response for the correct responses.
+
+            try:
+                message = response.json()['error']['message']
+                code = response.json()['error']['code']
+            except:
+                logging.info('API call success: Status Code 200')
+                message = None
+                code = None
+
+            if message and code:
+                logging.error("HTTP Response Code: {} - Message: {}".format(code, message))
+                raise ConnectionError("HTTP Response Code: {} - Message: {}".format(code, message))
+            else:
+                return True
 
         if response.status_code != 200:
             waiting_seconds = attempt * self.BACKOFF_MULTIPLIER

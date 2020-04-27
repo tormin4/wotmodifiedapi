@@ -188,6 +188,83 @@ class TankopediaMapsModel(Base):
     arena_id = Column(String)
 
 
+class VehiclesStatisticsModel(Base):
+    """
+    Create data model for the vehicles statistics.
+    """
+    __tablename__ = 'vehicle_statistics'
+    __table_args__ = {'schema': 'main'}
+
+    id = Column(Integer, primary_key=True)
+    loaded_at = Column(DateTime, default=datetime.datetime.utcnow)
+    account_id = Column(String)
+    battle_type = Column(String)
+    spotted = Column(Integer)
+    battles_on_stunning_vehicles = Column(Integer)
+    max_xp = Column(Integer)
+    xp = Column(Integer)
+    survived_battles = Column(Integer)
+    dropped_capture_points = Column(Integer)
+    hits_percents = Column(Integer)
+    draws = Column(Integer)
+    battles = Column(Integer)
+    damage_received = Column(Integer)
+    frags = Column(Integer)
+    stun_number = Column(Integer)
+    capture_points = Column(Integer)
+    stun_assisted_damage = Column(Integer)
+    max_damage = Column(Integer)
+    hits = Column(Integer)
+    battle_avg_xp = Column(Integer)
+    wins = Column(Integer)
+    losses = Column(Integer)
+    damage_dealt = Column(Integer)
+    max_frags = Column(Integer)
+    shots = Column(Integer)
+    direct_hits_received = Column(Integer)
+    explosion_hits = Column(Integer)
+    piercings_received = Column(Integer)
+    piercings = Column(Integer)
+    no_damage_direct_hits_received = Column(Integer)
+    explosion_hits_received = Column(Integer)
+    tanking_factor = Column(Integer)
+    avg_damage_blocked = Column(Integer)
+    mark_of_mastery = Column(Integer)
+    in_garage = Column(Boolean)
+    tank_id = Column(String)
+
+
+class VehiclesFragsModel(Base):
+    """
+    Create data model for the vehicles statistics.
+    """
+    __tablename__ = 'vehicle_frags'
+    __table_args__ = {'schema': 'main'}
+
+    id = Column(Integer, primary_key=True)
+    loaded_at = Column(DateTime, default=datetime.datetime.utcnow)
+    account_id = Column(String)
+    tank_id = Column(String)
+    opponent_tank_id = Column(String)
+    frags = Column(Integer)
+
+
+class VehiclesAchievements(Base):
+    """
+    Create data model for the vehicles frags.
+    """
+    __tablename__ = 'vehicle_achievements'
+    __table_args__ = {'schema': 'main'}
+
+    id = Column(Integer, primary_key=True)
+    loaded_at = Column(DateTime, default=datetime.datetime.utcnow)
+    account_id = Column(String)
+    tank_id = Column(String)
+    achievement_type = Column(String)
+    achievement = Column(String)
+    quantity = Column(Integer)
+
+
 class DataModel:
 
     @staticmethod

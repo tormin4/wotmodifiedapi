@@ -102,8 +102,8 @@ print(achievements)
 | Tankopedia    | Badges                    |                   |           |
 | Tankopedia    | Crew Qualifications       |                   |           |
 | Tankopedia    | Crew Skills               |                   |           |
-| Vehicles      | Vehicle statistics        |                   |           |
-| Vehicles      | Vehicle achievements      |                   |           |
+| Vehicles      | Vehicle statistics        | 2020-04-27        | 1.3.2     |
+| Vehicles      | Vehicle achievements      | 2020-04-27        | 1.3.2     |
 | Clans         |                           |                   |           |
 | Clan ratings  |                           |                   |           |
 | Strongholds   |                           |                   |           |
