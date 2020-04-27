@@ -11,6 +11,8 @@ from worldoftanks.action.tankopedia_vehicles import TankopediaVehiclesData
 from worldoftanks.action.tankopedia_achievements import TankopediaAchievementsData
 from worldoftanks.action.tankopedia_info import TankopediaInfoData
 from worldoftanks.action.tankopedia_maps import TankopediaMapsData
+from worldoftanks.action.vehicles_statistics import VehicleStatisticsData
+from worldoftanks.action.vehicles_achievements import VehicleAchievementsData
 
 
 class WotAPI:
@@ -143,5 +145,33 @@ class WotAPI:
 
         if not self.quietly:
             print("Player tankopedia maps has been extracted")
+        return data
+
+    def vehicle_statistics(self, load_to_db=True) -> list:
+        """
+        Handles the extraction, transformation and loading of vehicle statistics data into the database.
+        """
+        self._check_parameters()
+
+        vehicles = VehicleStatisticsData()
+        data = vehicles.etl_data(application_id=self.application_id, account_id=self.account_id, token=self.token,
+                                 load_to_db=load_to_db, realm=self.realm)
+
+        if not self.quietly:
+            print("Vehicle statistics has been extracted")
+        return data
+
+    def vehicle_achievements(self, load_to_db=True) -> list:
+        """
+        Handles the extraction, transformation and loading of vehicle statistics data into the database.
+        """
+        self._check_parameters()
+
+        vehicles = VehicleAchievementsData()
+        data = vehicles.etl_data(application_id=self.application_id, account_id=self.account_id, token=self.token,
+                                 load_to_db=load_to_db, realm=self.realm)
+
+        if not self.quietly:
+            print("Vehicle achievements has been extracted")
         return data
 

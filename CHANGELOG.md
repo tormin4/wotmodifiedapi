@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ### [Unreleased]
 ##
+- [0.3.22] Added functionality to extract data from the Player's Vehicles section.
 - [0.2.22] Added the coverage and pipeline badges to the project.
 - Removed some redundant files. 
 - [0.2.21] Added the CD / CI for testing and deployment to testing and production pypi. 
