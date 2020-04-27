@@ -1,5 +1,5 @@
-[![pipeline status](https://gitlab.com/gabriel_oana/worldoftanks/badges/master/pipeline.svg)](https://gitlab.com/gabriel_oana/worldoftanks/commits/master)
-[![pipeline status](https://gitlab.com/gabriel_oana/worldoftanks/badges/master/coverage.svg)](https://gitlab.com/gabriel_oana/worldoftanks/commits/master)
+[![pipeline status](https://gitlab.com/gabriel_oana/worldoftanks/badges/master/pipeline.svg)](https://gitlab.com/gabriel_oana/worldoftanks)
+[![pipeline status](https://gitlab.com/gabriel_oana/worldoftanks/badges/master/coverage.svg)](https://gitlab.com/gabriel_oana/worldoftanks)
 # World of Tanks - API (PC)
 
 ### 1. Description
