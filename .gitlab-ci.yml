@@ -12,7 +12,6 @@ stages:
   - deploy_test_pypi
   - deploy_pypi
 
-
 unittest:
   stage: test
   script:

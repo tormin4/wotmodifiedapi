@@ -1,10 +1,10 @@
 [![pipeline status](https://gitlab.com/gabriel_oana/worldoftanks/badges/master/pipeline.svg)](https://gitlab.com/gabriel_oana/worldoftanks/commits/master)
 [![pipeline status](https://gitlab.com/gabriel_oana/worldoftanks/badges/master/coverage.svg)](https://gitlab.com/gabriel_oana/worldoftanks/commits/master)
-# World of Tanks - API (PC Europe)
+# World of Tanks - API (PC)
 
 ### 1. Description
 This package will extract data from the Wargaming World of Tanks API.      
-Currently, this works only for the PC version on EU region with the rest of the regions and platforms to be implemented at a later date.
+Currently, this works only for the PC version with the rest of the platforms to be implemented in future iterations.
 
 The package will require the following from the official [World of Tanks Developer API](https://developers.wargaming.net/) page.
 * application id
