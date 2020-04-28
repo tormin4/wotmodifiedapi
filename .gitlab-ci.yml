@@ -44,7 +44,9 @@ deploy_to_test:
     - twine check dist/*
     - twine upload dist/* --repository-url https://test.pypi.org/legacy/ --username $TWINE_USERNAME --password $TWINE_PASSWORD
   when:
-    always
+    manual
+  only:
+    - master
 
 
 deploy_to_live:
@@ -56,5 +58,7 @@ deploy_to_live:
     - twine upload dist/* --repository-url https://upload.pypi.org/legacy/ --username $TWINE_USERNAME --password $TWINE_PASSWORD
   when:
     manual
+  only:
+    - master
 
 
