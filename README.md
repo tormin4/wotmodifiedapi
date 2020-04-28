@@ -31,9 +31,6 @@ wot = WotAPI(application_id='############',
              account_id='##########',
              token='#########',
              realm='eu')
-
-# Create the local database
-wot.db_init()
 ```
 
 ```
@@ -47,6 +44,11 @@ wot.tankopedia_vehicles(load_once=True)
 wot.tankopedia_achievements(load_once=True)
 wot.tankopedia_information(load_once=True)
 wot.tankopedia_maps(load_once=True)
+wot.tankopedia_badges(load_once=True)
+
+# Extract Player Vehicles Data
+wot.vehicle_achievements()
+wot.vehicle_statistics()
 ```
 
 
@@ -75,6 +77,23 @@ print(achievements)
 ]
 ```
 
+To not load data in the database add the ```load_to_db=False``` argument to the WotAPI class parameters.
+To give a specific location for the database to be created and populated set up the following arguments in the main class.
+
+```
+from worldoftanks import WotAPI
+
+wot = WotAPI(application_id='####',
+             account_id='##########',
+             token='#########',
+             realm='eu',
+             load_to_db=True,
+             db_path=<path_where_the_database_will_be_saved>,
+             logging_enabled=True/False,
+             log_level="WARNING"                     
+    )
+```
+
 
 
 ### 4. Left To Do
@@ -88,7 +107,7 @@ print(achievements)
 | Tankopedia    | Achievements              | 2020-04-25        | 0.0.2     |
 | Tankopedia    | Tankopedia Information    | 2020-04-25        | 0.0.2     |
 | Tankopedia    | Maps                      | 2020-04-25        | 0.0.2     |
-| Tankopedia    | Badges                    |                   |           |
+| Tankopedia    | Badges                    | 2020-04-28        | 0.4.22    |
 | Tankopedia    | Vehicle characteristics   |                   |           |
 | Tankopedia    | Engines                   | Deprecated        |           |
 | Tankopedia    | Turrets                   | Deprecated        |           |
