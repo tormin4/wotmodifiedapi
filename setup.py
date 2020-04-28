@@ -9,8 +9,8 @@ HERE = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(HERE, "README.md")) as fid:
     README = fid.read()
 
-setup(name='WotAPI',
-      version='0.3.2',
+setup(name='wotapi',
+      version='0.3.3',
       description='Extract data from the World of Tanks PC API',
       author='Gabriel Oana',
       author_email='gabriel.oana91@gmail.com',
