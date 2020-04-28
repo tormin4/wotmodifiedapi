@@ -249,7 +249,7 @@ class VehiclesFragsModel(Base):
     frags = Column(Integer)
 
 
-class VehiclesAchievements(Base):
+class VehiclesAchievementsModel(Base):
     """
     Create data model for the vehicles frags.
     """
@@ -263,6 +263,24 @@ class VehiclesAchievements(Base):
     achievement_type = Column(String)
     achievement = Column(String)
     quantity = Column(Integer)
+
+
+class TankopediaBadgesModel(Base):
+    """
+    Create data model for the vehicles frags.
+    """
+    __tablename__ = 'tankopedia_badges'
+    __table_args__ = {'schema': 'main'}
+
+    id = Column(Integer, primary_key=True)
+    loaded_at = Column(DateTime, default=datetime.datetime.utcnow)
+    account_id = Column(String)
+    badge_id = Column(Integer)
+    name = Column(String)
+    medium_icon = Column(String)
+    small_icon = Column(String)
+    big_icon = Column(String)
+    description = Column(String)
 
 
 class DataModel:

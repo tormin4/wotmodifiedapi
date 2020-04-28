@@ -46,7 +46,7 @@ class TankopediaMapsData:
         return clean_data
 
     def etl_data(self, application_id: str, account_id: str, token: str, load_to_db: bool, load_once: bool,
-                 realm: str) -> list:
+                 realm: str, db_path: str) -> list:
         """
         Combines all the above methods to be used as one command.
         Takes the details and the statistics data and loads it into dbsqlite.
@@ -59,11 +59,11 @@ class TankopediaMapsData:
         if load_to_db:
             if load_once:
                 # Checks if the data is already existing in the database else loads it.
-                if DataModelLoader.check_if_data_exists(TankopediaMapsModel):
+                if DataModelLoader.check_if_data_exists(TankopediaMapsModel, db_path=db_path):
                     logging.info('Tankopedia maps data will not be loaded into the database.')
                 else:
-                    DataModelLoader.insert(TankopediaMapsModel, clean_data)
+                    DataModelLoader.insert(TankopediaMapsModel, clean_data, db_path=db_path)
             else:
-                DataModelLoader.insert(TankopediaMapsModel, clean_data)
+                DataModelLoader.insert(TankopediaMapsModel, clean_data, db_path=db_path)
 
         return clean_data

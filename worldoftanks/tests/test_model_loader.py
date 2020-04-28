@@ -14,10 +14,10 @@ class TestDataModelLoader(unittest.TestCase):
         DataModel.create_tables(self.engine)
 
     def test_multiple_insert(self):
-        DataModelLoader.insert(PlayerPersonalDataDetailsModel, data, db_engine=self.engine)
+        DataModelLoader.insert(PlayerPersonalDataDetailsModel, data, db_engine=self.engine, db_path='')
 
     def test_supply_data_count(self):
-        result = DataModelLoader.check_if_data_exists(PlayerPersonalDataDetailsModel, db_engine=self.engine)
+        result = DataModelLoader.check_if_data_exists(PlayerPersonalDataDetailsModel, db_engine=self.engine, db_path='')
         expected = True
         self.assertEqual(result, expected)
 

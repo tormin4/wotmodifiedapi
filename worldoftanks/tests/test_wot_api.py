@@ -9,10 +9,9 @@ class TestWotAPI(unittest.TestCase):
                  account_id='1234',
                  token='12er',
                  realm='eu',
-                 quietly=False)
+                 quietly=True)
 
     def test_database_initialization(self):
-        self.wot.db_init()
         os.remove('world_of_tanks.db')
 
     def test_check_validators(self):
@@ -38,6 +37,9 @@ class TestWotAPI(unittest.TestCase):
 
     def test_tankopedia_maps_fail(self):
         self.assertRaises(ConnectionError, self.wot.tankopedia_maps, False)
+
+    def test_tankopedia_badges_fail(self):
+        self.assertRaises(ConnectionError, self.wot.tankopedia_badges, False)
 
     def test_vehicle_statistics_fail(self):
         self.assertRaises(ConnectionError, self.wot.vehicle_statistics)

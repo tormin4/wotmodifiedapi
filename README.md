@@ -29,7 +29,8 @@ from worldoftanks import WotAPI
 
 wot = WotAPI(application_id='############',
              account_id='##########',
-             token='#########')
+             token='#########',
+             realm='eu')
 
 # Create the local database
 wot.db_init()
@@ -89,23 +90,31 @@ print(achievements)
 | Tankopedia    | Maps                      | 2020-04-25        | 0.0.2     |
 | Tankopedia    | Badges                    |                   |           |
 | Tankopedia    | Vehicle characteristics   |                   |           |
-| Tankopedia    | Engines                   |                   |           |
-| Tankopedia    | Turrets                   |                   |           |
-| Tankopedia    | Radios                    |                   |           |
-| Tankopedia    | Suspensions               |                   |           | 
-| Tankopedia    | Guns                      |                   |           |
+| Tankopedia    | Engines                   | Deprecated        |           |
+| Tankopedia    | Turrets                   | Deprecated        |           |
+| Tankopedia    | Radios                    | Deprecated        |           |
+| Tankopedia    | Suspensions               | Deprecated        |           | 
+| Tankopedia    | Guns                      | Deprecated        |           |
 | Tankopedia    | Equipment and Consumables |                   |           |
 | Tankopedia    | Personal Missions         |                   |           |
 | Tankopedia    | Personal Reserves         |                   |           |
 | Tankopedia    | Vehicle Configurations    |                   |           |
 | Tankopedia    | Modules                   |                   |           |
-| Tankopedia    | Badges                    |                   |           |
 | Tankopedia    | Crew Qualifications       |                   |           |
 | Tankopedia    | Crew Skills               |                   |           |
 | Vehicles      | Vehicle statistics        | 2020-04-27        | 0.3.2     |
 | Vehicles      | Vehicle achievements      | 2020-04-27        | 0.3.2     |
-| Clans         |                           |                   |           |
-| Clan ratings  |                           |                   |           |
+| Clans         | Clans                     |                   |           |
+| Clans         | Clan Details              |                   |           |
+| Clans         | Clan Member Details       |                   |           |
+| Clans         | Clan Glossary             |                   |           |
+| Clans         | Message Board             |                   |           |
+| Clans         | Player Clan History       |                   |           |
+| Clan ratings  | Types of Ratings          |                   |           |
+| Clan ratings  | Dates with available r.   |                   |           |
+| Clan ratings  | Clan Ratings              |                   |           |
+| Clan ratings  | Adj Positions In Clan R.  |                   |           |
+| Clan ratings  | Top Clans                 |                   |           |
 | Strongholds   |                           |                   |           |
 | Global Map    |                           |                   |           |
     
