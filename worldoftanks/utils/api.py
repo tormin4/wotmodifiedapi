@@ -37,6 +37,8 @@ class API:
             url = self._build_url_vehicle_statistics()
         elif source == 'vehicle_achievements':
             url = self._build_url_vehicle_achievements()
+        elif source == 'tankopedia_badges':
+            url = self._build_url_tankopedia_badges()
         else:
             raise ValueError('API Method invalid')
 
@@ -49,6 +51,16 @@ class API:
                 return r.json()
             else:
                 continue
+
+    def _build_url_tankopedia_badges(self) -> str:
+        """
+        Extracts tankopedia badges.
+        """
+
+        url = "{}/encyclopedia/badges/?application_id={}" \
+            .format(self.BASE_URL, self.application_id)
+
+        return url
 
     def _build_url_vehicle_statistics(self) -> str:
         """

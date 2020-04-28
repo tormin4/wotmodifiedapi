@@ -44,7 +44,8 @@ class PlayerVehiclesData:
 
         return clean_data
 
-    def etl_data(self, application_id: str, account_id: str, token: str, load_to_db: bool, realm: str) -> list:
+    def etl_data(self, application_id: str, account_id: str, token: str, load_to_db: bool, realm: str, db_path: str) \
+            -> list:
         """
         Combines all the above methods to be used as one command.
         Takes the details and the statistics data and loads it into dbsqlite.
@@ -55,6 +56,6 @@ class PlayerVehiclesData:
         clean_data = self._parse_data(raw_data=raw_data, account_id=account_id)
 
         if load_to_db:
-            DataModelLoader.insert(PlayerPersonalVehiclesModel, clean_data)
+            DataModelLoader.insert(PlayerPersonalVehiclesModel, clean_data, db_path=db_path)
 
         return clean_data

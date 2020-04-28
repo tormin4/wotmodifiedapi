@@ -108,7 +108,8 @@ class PlayerPersonalData:
 
         return statistic_data
 
-    def etl_data(self, application_id: str, account_id: str, token: str, load_to_db: bool, realm: str) -> list:
+    def etl_data(self, application_id: str, account_id: str, token: str, load_to_db: bool, realm: str, db_path: str) \
+            -> list:
         """
         Combines all the above methods to be used as one command.
         Takes the details and the statistics data and loads it into dbsqlite.
@@ -120,8 +121,8 @@ class PlayerPersonalData:
         statistics = self._parse_statistics_data(raw_data, account_id=account_id)
 
         if load_to_db:
-            DataModelLoader.insert(PlayerPersonalDataDetailsModel, details)
-            DataModelLoader.insert(PlayerPersonalDataStatisticsModel, statistics)
+            DataModelLoader.insert(PlayerPersonalDataDetailsModel, details, db_path=db_path)
+            DataModelLoader.insert(PlayerPersonalDataStatisticsModel, statistics, db_path=db_path)
 
         # Return the dict with combined data
         result = [{

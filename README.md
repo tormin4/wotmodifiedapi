@@ -29,10 +29,8 @@ from worldoftanks import WotAPI
 
 wot = WotAPI(application_id='############',
              account_id='##########',
-             token='#########')
-
-# Create the local database
-wot.db_init()
+             token='#########',
+             realm='eu')
 ```
 
 ```
@@ -46,6 +44,11 @@ wot.tankopedia_vehicles(load_once=True)
 wot.tankopedia_achievements(load_once=True)
 wot.tankopedia_information(load_once=True)
 wot.tankopedia_maps(load_once=True)
+wot.tankopedia_badges(load_once=True)
+
+# Extract Player Vehicles Data
+wot.vehicle_achievements()
+wot.vehicle_statistics()
 ```
 
 
@@ -74,6 +77,23 @@ print(achievements)
 ]
 ```
 
+To not load data in the database add the ```load_to_db=False``` argument to the WotAPI class parameters.
+To give a specific location for the database to be created and populated set up the following arguments in the main class.
+
+```
+from worldoftanks import WotAPI
+
+wot = WotAPI(application_id='####',
+             account_id='##########',
+             token='#########',
+             realm='eu',
+             load_to_db=True,
+             db_path=<path_where_the_database_will_be_saved>,
+             logging_enabled=True/False,
+             log_level="WARNING"                     
+    )
+```
+
 
 
 ### 4. Left To Do
@@ -87,25 +107,33 @@ print(achievements)
 | Tankopedia    | Achievements              | 2020-04-25        | 0.0.2     |
 | Tankopedia    | Tankopedia Information    | 2020-04-25        | 0.0.2     |
 | Tankopedia    | Maps                      | 2020-04-25        | 0.0.2     |
-| Tankopedia    | Badges                    |                   |           |
+| Tankopedia    | Badges                    | 2020-04-28        | 0.4.22    |
 | Tankopedia    | Vehicle characteristics   |                   |           |
-| Tankopedia    | Engines                   |                   |           |
-| Tankopedia    | Turrets                   |                   |           |
-| Tankopedia    | Radios                    |                   |           |
-| Tankopedia    | Suspensions               |                   |           | 
-| Tankopedia    | Guns                      |                   |           |
+| Tankopedia    | Engines                   | Deprecated        |           |
+| Tankopedia    | Turrets                   | Deprecated        |           |
+| Tankopedia    | Radios                    | Deprecated        |           |
+| Tankopedia    | Suspensions               | Deprecated        |           | 
+| Tankopedia    | Guns                      | Deprecated        |           |
 | Tankopedia    | Equipment and Consumables |                   |           |
 | Tankopedia    | Personal Missions         |                   |           |
 | Tankopedia    | Personal Reserves         |                   |           |
 | Tankopedia    | Vehicle Configurations    |                   |           |
 | Tankopedia    | Modules                   |                   |           |
-| Tankopedia    | Badges                    |                   |           |
 | Tankopedia    | Crew Qualifications       |                   |           |
 | Tankopedia    | Crew Skills               |                   |           |
 | Vehicles      | Vehicle statistics        | 2020-04-27        | 0.3.2     |
 | Vehicles      | Vehicle achievements      | 2020-04-27        | 0.3.2     |
-| Clans         |                           |                   |           |
-| Clan ratings  |                           |                   |           |
+| Clans         | Clans                     |                   |           |
+| Clans         | Clan Details              |                   |           |
+| Clans         | Clan Member Details       |                   |           |
+| Clans         | Clan Glossary             |                   |           |
+| Clans         | Message Board             |                   |           |
+| Clans         | Player Clan History       |                   |           |
+| Clan ratings  | Types of Ratings          |                   |           |
+| Clan ratings  | Dates with available r.   |                   |           |
+| Clan ratings  | Clan Ratings              |                   |           |
+| Clan ratings  | Adj Positions In Clan R.  |                   |           |
+| Clan ratings  | Top Clans                 |                   |           |
 | Strongholds   |                           |                   |           |
 | Global Map    |                           |                   |           |
     

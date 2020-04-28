@@ -60,3 +60,8 @@ class TestAPI(unittest.TestCase):
         url = self.api._build_url_tankopedia_maps()
         expected = 'https://api.worldoftanks.eu/wot/encyclopedia/arenas/?application_id=1234'
         self.assertEqual(url, expected)
+
+    def test_url_build_tankopedia_badges(self):
+        url = self.api._build_url_tankopedia_badges()
+        expected = 'https://api.worldoftanks.eu/wot/encyclopedia/badges/?application_id=1234'
+        self.assertEqual(url, expected)

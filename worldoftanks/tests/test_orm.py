@@ -5,7 +5,8 @@ from sqlalchemy.orm import sessionmaker
 from worldoftanks.orm.data_model import Base, DataModel
 from worldoftanks.orm.data_model import PlayerPersonalDataDetailsModel, PlayerPersonalDataStatisticsModel, \
     PlayerPersonalVehiclesModel, TankopediaInfoModel, TankopediaAchievementsModel, \
-    TankopediaVehiclesModel, TankopediaMapsModel, VehiclesStatisticsModel, VehiclesFragsModel, VehiclesAchievements
+    TankopediaVehiclesModel, TankopediaMapsModel, VehiclesStatisticsModel, VehiclesFragsModel, \
+    VehiclesAchievementsModel, TankopediaBadgesModel
 
 
 test_data = {"id": 10, "account_id": "1234"}
@@ -28,7 +29,8 @@ class TestModels(unittest.TestCase):
         self.session.add(TankopediaMapsModel(id=test_data['id']))
         self.session.add(VehiclesStatisticsModel(id=test_data['id']))
         self.session.add(VehiclesFragsModel(id=test_data['id']))
-        self.session.add(VehiclesAchievements(id=test_data['id']))
+        self.session.add(VehiclesAchievementsModel(id=test_data['id']))
+        self.session.add(TankopediaBadgesModel(id=test_data['id']))
         self.session.commit()
 
     def test_player_personal_details_model(self):
@@ -77,8 +79,13 @@ class TestModels(unittest.TestCase):
         self.assertEqual(query.id,  expected.id)
 
     def test_vehicle_achievement_model(self):
-        expected = VehiclesAchievements(id=test_data['id'])
-        query = self.session.query(VehiclesAchievements).first()
+        expected = VehiclesAchievementsModel(id=test_data['id'])
+        query = self.session.query(VehiclesAchievementsModel).first()
+        self.assertEqual(query.id,  expected.id)
+
+    def test_tankopedia_badges_model(self):
+        expected = TankopediaBadgesModel(id=test_data['id'])
+        query = self.session.query(TankopediaBadgesModel).first()
         self.assertEqual(query.id,  expected.id)
 
     def test_xdb_tearDown(self):
