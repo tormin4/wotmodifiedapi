@@ -10,7 +10,7 @@ with open(os.path.join(HERE, "README.md")) as fid:
     README = fid.read()
 
 setup(name='wotapi',
-      version='0.4.3',
+      version='0.4.4',
       description='Extract data from the World of Tanks PC API',
       author='Gabriel Oana',
       author_email='gabriel.oana91@gmail.com',
@@ -25,7 +25,7 @@ setup(name='wotapi',
             'sqlalchemy',
       ],
       classifiers=[
-            "Development Status :: 3 - Alpha",
+            "Development Status :: 4 - Beta",
             "Programming Language :: Python :: 3",
             "License :: OSI Approved :: MIT License",
             "Operating System :: OS Independent",
@@ -34,5 +34,6 @@ setup(name='wotapi',
             'Programming Language :: Python :: 3.5',
             'Programming Language :: Python :: 3.6',
             'Programming Language :: Python :: 3.7',
+            'Programming Language :: Python :: 3.8',
       ]
       )
