@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-### [0.4.22]
+### [0.4.3]
 * New API feature added. Extraction of Tankopedia Badges.
 * Additional argument in the main class to specify the location of where the database should be created.
 * Updated documentation.
