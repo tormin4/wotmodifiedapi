@@ -1,5 +1,10 @@
 [![pipeline status](https://gitlab.com/gabriel_oana/worldoftanks/badges/master/pipeline.svg)](https://gitlab.com/gabriel_oana/worldoftanks)
 [![pipeline status](https://gitlab.com/gabriel_oana/worldoftanks/badges/master/coverage.svg)](https://gitlab.com/gabriel_oana/worldoftanks)
+[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/wotapi)](https://gitlab.com/gabriel_oana/worldoftanks)
+
+
+
 # World of Tanks - API (PC)
 
 ### 1. Description
