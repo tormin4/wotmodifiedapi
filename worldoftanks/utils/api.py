@@ -5,10 +5,9 @@ import time
 
 class API:
 
-    def __init__(self, application_id: str, account_id: str, token: str, realm: str):
+    def __init__(self, application_id: str, account_id: str, realm: str):
         self.account_id = account_id
         self.application_id = application_id
-        self.access_token = token
         self.realm = realm
         self.BASE_URL = 'https://api.worldoftanks.{}/wot'.format(realm)
         self.MAX_ATTEMPTS = 3
@@ -67,8 +66,8 @@ class API:
         Extracts vehicles statistics in the player vehicle section.
         """
 
-        url = "{}/tanks/stats/?application_id={}&access_token={}&account_id={}" \
-            .format(self.BASE_URL, self.application_id, self.access_token, self.account_id)
+        url = "{}/tanks/stats/?application_id={}&account_id={}" \
+            .format(self.BASE_URL, self.application_id, self.account_id)
 
         return url
 
@@ -77,8 +76,8 @@ class API:
         Extracts vehicles statistics in the player vehicle section.
         """
 
-        url = "{}/tanks/achievements/?application_id={}&access_token={}&account_id={}" \
-            .format(self.BASE_URL, self.application_id, self.access_token, self.account_id)
+        url = "{}/tanks/achievements/?application_id={}&account_id={}" \
+            .format(self.BASE_URL, self.application_id, self.account_id)
 
         return url
 
@@ -87,8 +86,8 @@ class API:
         Extracts player personal data from the accounts section.
         """
 
-        url = "{}/account/info/?application_id={}&access_token={}&account_id={}" \
-            .format(self.BASE_URL, self.application_id, self.access_token, self.account_id)
+        url = "{}/account/info/?application_id={}&account_id={}" \
+            .format(self.BASE_URL, self.application_id, self.account_id)
 
         return url
 
@@ -97,8 +96,8 @@ class API:
         Extracts player vehicle data from the accounts section.
         """
 
-        url = "{}/account/tanks/?application_id={}&access_token={}&account_id={}" \
-            .format(self.BASE_URL, self.application_id, self.access_token, self.account_id)
+        url = "{}/account/tanks/?application_id={}&account_id={}" \
+            .format(self.BASE_URL, self.application_id, self.account_id)
 
         return url
 

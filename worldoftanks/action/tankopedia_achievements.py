@@ -11,14 +11,14 @@ class TankopediaAchievementsData:
         pass
 
     @staticmethod
-    def _extract_data(application_id: str, account_id: str, token: str, realm: str) -> dict:
+    def _extract_data(application_id: str, account_id: str, realm: str) -> dict:
         """
         Extracts Data from the api
         """
 
         logging.info('Extracting player vehicles data')
 
-        wot = API(application_id=application_id, account_id=account_id, token=token, realm=realm)
+        wot = API(application_id=application_id, account_id=account_id,  realm=realm)
         raw_data = wot.get_data(source='tankopedia_achievements')
 
         return raw_data
@@ -72,7 +72,7 @@ class TankopediaAchievementsData:
 
         return clean_data
 
-    def etl_data(self, application_id: str, account_id: str, token: str, load_to_db: bool, load_once: bool,
+    def etl_data(self, application_id: str, account_id: str, load_to_db: bool, load_once: bool,
                  realm: str, db_path: str) -> list:
         """
         Combines all the above methods to be used as one command.
@@ -80,7 +80,7 @@ class TankopediaAchievementsData:
         It also returns a combination of the data as a dictionary.
         """
 
-        raw_data = self._extract_data(account_id=account_id, application_id=application_id, token=token, realm=realm)
+        raw_data = self._extract_data(account_id=account_id, application_id=application_id,  realm=realm)
         clean_data = self._parse_data(raw_data=raw_data)
 
         if load_to_db:

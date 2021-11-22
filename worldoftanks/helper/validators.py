@@ -26,7 +26,7 @@ class Validators:
         Checks if the realm selected is correct.
         """
 
-        if realm in ['eu', 'ru', 'na', 'asia']:
+        if realm in ['eu', 'ru', 'com', 'asia']:
             return True
         else:
             logging.error('Realm {} incorrect. Please choose from: eu, ru, na or asia'.format(realm))

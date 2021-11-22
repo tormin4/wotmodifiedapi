@@ -11,14 +11,14 @@ class PlayerPersonalData:
         pass
 
     @staticmethod
-    def _extract_data(application_id: str, account_id: str, token: str, realm: str) -> dict:
+    def _extract_data(application_id: str, account_id: str, realm: str) -> dict:
         """
         Extracts Data from the api
         """
 
         logging.info('Extracting player personal data')
 
-        wot = API(application_id=application_id, account_id=account_id, token=token, realm=realm)
+        wot = API(application_id=application_id, account_id=account_id, realm=realm)
         raw_data = wot.get_data(source='player_personal_data')
 
         return raw_data
@@ -37,15 +37,6 @@ class PlayerPersonalData:
             "last_battle_time": account_data['last_battle_time'],
             "created_at": account_data['created_at'],
             "updated_at": account_data['updated_at'],
-            "gold": account_data['private']['gold'],
-            "free_xp": account_data['private']['free_xp'],
-            "ban_time": account_data['private']['ban_time'],
-            "is_bound_to_phone": account_data['private']['is_bound_to_phone'],
-            "is_premium": account_data['private']['is_premium'],
-            "credits": account_data['private']['credits'],
-            "premium_expires_at": account_data['private']['premium_expires_at'],
-            "bonds": account_data['private']['bonds'],
-            "battle_life_time": account_data['private']['battle_life_time'],
             "global_rating": account_data['global_rating'],
             "clan_id": account_data['clan_id']
         }]
@@ -108,7 +99,7 @@ class PlayerPersonalData:
 
         return statistic_data
 
-    def etl_data(self, application_id: str, account_id: str, token: str, load_to_db: bool, realm: str, db_path: str) \
+    def etl_data(self, application_id: str, account_id: str, load_to_db: bool, realm: str, db_path: str) \
             -> list:
         """
         Combines all the above methods to be used as one command.
@@ -116,7 +107,7 @@ class PlayerPersonalData:
         It also returns a combination of the data as a dictionary.
         """
 
-        raw_data = self._extract_data(account_id=account_id, application_id=application_id, token=token, realm=realm)
+        raw_data = self._extract_data(account_id=account_id, application_id=application_id, realm=realm)
         details = self._parse_details_data(raw_data, account_id=account_id)
         statistics = self._parse_statistics_data(raw_data, account_id=account_id)
 

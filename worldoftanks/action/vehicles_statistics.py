@@ -11,14 +11,14 @@ class VehicleStatisticsData:
         pass
 
     @staticmethod
-    def _extract_data(application_id: str, account_id: str, token: str, realm: str) -> dict:
+    def _extract_data(application_id: str, account_id: str,  realm: str) -> dict:
         """
         Extracts Data from the api
         """
 
         logging.info('Extracting player vehicles data')
 
-        wot = API(application_id=application_id, account_id=account_id, token=token, realm=realm)
+        wot = API(application_id=application_id, account_id=account_id,  realm=realm)
         raw_data = wot.get_data(source='vehicle_statistics')
 
         return raw_data
@@ -103,7 +103,7 @@ class VehicleStatisticsData:
 
         return frags_data
 
-    def etl_data(self, application_id: str, account_id: str, token: str, load_to_db: bool, realm: str,
+    def etl_data(self, application_id: str, account_id: str,  load_to_db: bool, realm: str,
                  db_path: str) -> list:
         """
         Combines all the above methods to be used as one command.
@@ -111,7 +111,7 @@ class VehicleStatisticsData:
         It also returns a combination of the data as a dictionary.
         """
 
-        raw_data = self._extract_data(account_id=account_id, application_id=application_id, token=token, realm=realm)
+        raw_data = self._extract_data(account_id=account_id, application_id=application_id,  realm=realm)
         statistics_data = self._parse_vehicle_statistics(raw_data=raw_data, account_id=account_id)
         frags_data = self._parse_vehicle_frags(raw_data=raw_data, account_id=account_id)
 
